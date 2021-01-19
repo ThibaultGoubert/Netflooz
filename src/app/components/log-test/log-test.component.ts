@@ -19,7 +19,7 @@ export class LogTestComponent implements OnInit {
 
   testLog(): void {
 
-    this.logger.log("Test the `log()` Method");
+    this.logger.log('Test the `log()` Method');
 
   }
 
