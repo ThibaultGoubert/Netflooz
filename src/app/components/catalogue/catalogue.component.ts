@@ -21,4 +21,9 @@ export class CatalogueComponent implements OnInit {
     });
   }
 
+
+  changeBooksData(newBooksData: Book[]): void{
+    this.booksData = newBooksData;
+  }
+
 }

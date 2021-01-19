@@ -1,3 +1,4 @@
+<app-research (newResearch)="changeBooksData($event)"></app-research>
 <ul>
     <li *ngFor="let book of booksData">
         <i>{{book.title}}</i>: {{book.author}}, {{book.published}}

@@ -1,5 +1,6 @@
 import { ResearchService } from './../../services/research/research.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Book } from 'src/app/shared/interfaces/book';
 
 @Component({
   selector: 'app-research',
@@ -9,6 +10,8 @@ import { Component, OnInit } from '@angular/core';
 export class ResearchComponent implements OnInit {
 
   inputValue = '';
+  @Output()
+  newResearch = new EventEmitter<Book[]>();
 
   constructor(private researchService: ResearchService) { }
 
@@ -19,7 +22,10 @@ export class ResearchComponent implements OnInit {
     // console.log(this.inputValue);
     const url = '?author=' + this.inputValue;
     this.researchService.getData(url).subscribe(data => {
-      console.log(data);
-    });
+      this.newResearch.emit(data);
+    },
+      error => {
+
+      });
   }
 }

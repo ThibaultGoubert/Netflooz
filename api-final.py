@@ -32,13 +32,14 @@ def page_not_found(e):
     return "<h1>404</h1><p>The resource could not be found.</p>", 404
 
 
-@app.route('/api/v1/resources/books', methods=['GET'])
+@app.route('/api/v1/resources/books/search', methods=['GET'])
 def api_filter():
     query_parameters = request.args
 
     id = query_parameters.get('id')
     published = query_parameters.get('published')
     author = query_parameters.get('author')
+    title = query_parameters.get('title')
 
     query = "SELECT * FROM books WHERE"
     to_filter = []
@@ -52,7 +53,10 @@ def api_filter():
     if author:
         query += ' author=? AND'
         to_filter.append(author)
-    if not (id or published or author):
+    if title:
+        query += ' title=? AND'
+        to_filter.append(title)
+    if not (id or published or author or title):
         return page_not_found(404)
 
     query = query[:-4] + ';'
