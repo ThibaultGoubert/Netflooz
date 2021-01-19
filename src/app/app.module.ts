@@ -3,13 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LogTestComponent } from './components/log-test/log-test.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CatalogueComponent } from './components/catalogue/catalogue.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LogTestComponent
+    CatalogueComponent
   ],
   imports: [
     BrowserModule,
