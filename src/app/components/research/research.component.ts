@@ -18,14 +18,22 @@ export class ResearchComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  search(): void {
-    // console.log(this.inputValue);
-    const url = '?author=' + this.inputValue;
+  search(url: string): void {
     this.researchService.getData(url).subscribe(data => {
       this.newResearch.emit(data);
     },
       error => {
-
+        this.newResearch.emit([]);
       });
+  }
+
+  OnSearch(): void {
+    let url;
+    if (this.inputValue === '') {
+      url = '/all';
+    } else {
+      url = '/search?author=' + this.inputValue;
+    }
+    this.search(url);
   }
 }

@@ -11,6 +11,6 @@ export class ResearchService {
   constructor(private httpClient: HttpClient) { }
 
   getData(url: string): Observable<Book[]> {
-    return this.httpClient.get<Book[]>('http://127.0.0.1:5000/api/v1/resources/books/search' + url);
+    return this.httpClient.get<Book[]>('http://127.0.0.1:5000/api/v1/resources/books' + url);
   }
 }
