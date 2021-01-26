@@ -29,7 +29,7 @@ export class NotesComponent implements OnInit {
 
   modifNote(): void {
     this.notesService.sendNotes('-3', '1').subscribe(data => {
-
+      console.log(data);
     });
   }
 
