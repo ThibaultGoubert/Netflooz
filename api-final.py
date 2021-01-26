@@ -69,4 +69,41 @@ def api_filter():
 
     return jsonify(results)
 
+@app.route('/api/v1/resources/notes/all', methods=['GET'])
+def api_notes_all():
+	conn = sqlite3.connect('notes.db')
+	conn.row_factory = dict_factory
+	cur = conn.cursor()
+	all_books = cur.execute('SELECT id_book, AVG(note) FROM notes GROUP BY id_book;').fetchall()
+
+	return jsonify(all_books)
+
+@app.route('/api/v1/resources/notes/create', methods=['POST'])
+def api_notes_create():
+  query_parameters = request.args
+
+  id_book = query_parameters.get('id_book')
+  note = query_parameters.get('note')
+
+  query = "INSERT INTO notes (id_book,note) VALUES("
+  to_filter = []
+
+  if id_book:
+    query += '?,'
+    to_filter.append(id_book)
+  if note:
+    query += '?)'
+    to_filter.append(note)
+  if not (id_book or note):
+    return page_not_found(404)
+
+  query += ';'
+
+  conn = sqlite3.connect('notes.db')
+  conn.row_factory = dict_factory
+  cur = conn.cursor()
+
+  cur.execute(query, to_filter)
+  return "1"
+
 app.run()

@@ -7,12 +7,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { CatalogueComponent } from './components/catalogue/catalogue.component';
 import { ResearchComponent } from './components/research/research.component';
 import { FormsModule } from '@angular/forms';
+import { NotesComponent } from './components/notes/notes.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CatalogueComponent,
-    ResearchComponent
+    ResearchComponent,
+    NotesComponent
   ],
   imports: [
     BrowserModule,
