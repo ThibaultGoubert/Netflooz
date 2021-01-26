@@ -8,7 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class NotesComponent implements OnInit {
 
-  @Input() id: string | undefined;
+  @Input() id = '';
+  avg = '';
 
   value: number | undefined;
 
@@ -22,13 +23,14 @@ export class NotesComponent implements OnInit {
 
   test(): void {
     // console.log(this.value);
-    this.notesService.getNotes().subscribe(data => {
-      console.log(data);
+    // const index: number = +this.id;
+    this.notesService.getNote(this.id).subscribe(data => {
+      this.avg = data.AVG;
     });
   }
 
-  modifNote(): void {
-    this.notesService.sendNotes('-3', '1').subscribe(data => {
+  modifNote(note: string): void {
+    this.notesService.sendNotes(this.id, note).subscribe(data => {
       console.log(data);
     });
   }

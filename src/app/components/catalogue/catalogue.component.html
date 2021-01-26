@@ -2,6 +2,6 @@
 <ul>
     <li *ngFor="let book of booksData">
         <i>{{book.title}}</i>: {{book.author}}, {{book.published}}
-        <app-notes id={{book.title}}></app-notes>
+        <app-notes id={{book.id}}></app-notes>
     </li>
 </ul>
