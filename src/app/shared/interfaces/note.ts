@@ -1,4 +1,4 @@
 export interface Note {
-  AVG: string;
+  AVG: number;
   id_book: number;
 }

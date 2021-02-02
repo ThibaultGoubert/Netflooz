@@ -1,5 +1,6 @@
 import { NotesService } from './../../services/notes/notes.service';
 import { Component, Input, OnInit } from '@angular/core';
+import { Note } from 'src/app/shared/interfaces/note';
 
 @Component({
   selector: 'app-notes',
@@ -9,7 +10,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class NotesComponent implements OnInit {
 
   @Input() id = '';
-  avg = '';
+  note!: Note;
 
   value: number | undefined;
 
@@ -18,20 +19,21 @@ export class NotesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.test();
+    this.getAvgNote();
   }
 
-  test(): void {
-    // console.log(this.value);
-    // const index: number = +this.id;
+  getAvgNote(): void {
     this.notesService.getNote(this.id).subscribe(data => {
-      this.avg = data.AVG;
+      this.note = data[0];
+      this.note.AVG = Math.round((this.note.AVG * 100)) / 100;
     });
   }
 
   modifNote(note: string): void {
     this.notesService.sendNotes(this.id, note).subscribe(data => {
-      console.log(data);
+      if (data) {
+        this.getAvgNote();
+      }
     });
   }
 

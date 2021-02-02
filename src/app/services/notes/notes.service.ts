@@ -10,8 +10,8 @@ export class NotesService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getNote(id: string): Observable<Note> {
-    return this.httpClient.get<Note>(`http://127.0.0.1:5000/api/v1/resources/notes?id_book=${id}`);
+  getNote(id: string): Observable<Note[]> {
+    return this.httpClient.get<Note[]>(`http://127.0.0.1:5000/api/v1/resources/notes?id_book=${id}`);
   }
 
   sendNotes(idBook: string, note: string): Observable<any> {

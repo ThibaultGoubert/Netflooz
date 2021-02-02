@@ -8,13 +8,15 @@ import { CatalogueComponent } from './components/catalogue/catalogue.component';
 import { ResearchComponent } from './components/research/research.component';
 import { FormsModule } from '@angular/forms';
 import { NotesComponent } from './components/notes/notes.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CatalogueComponent,
     ResearchComponent,
-    NotesComponent
+    NotesComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
