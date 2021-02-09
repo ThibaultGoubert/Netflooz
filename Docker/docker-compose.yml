@@ -1,0 +1,23 @@
+version: '3.3'
+
+services:
+   catalogue:
+     image: catalogue:latest
+     ports:
+       - "5000:5000"
+     restart: always
+
+   notes:
+     image: notes:latest
+     ports:
+       - "5001:5000"
+     restart: always
+
+   front:
+     image: front:latest
+     ports:
+       - "8080:80"
+     restart: always
+       
+volumes:
+    volume_netflooz: {}
