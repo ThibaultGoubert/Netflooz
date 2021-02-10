@@ -3,18 +3,27 @@ version: '3.3'
 services:
    catalogue:
      image: catalogue:latest
-     ports:
-       - "5000:5000"
-     restart: always
-
-   notes:
-     image: notes:latest
+     build:
+      context: Dockerfiles/Catalogue/ .
+      dockerfile: Dockerfile
      ports:
        - "5001:5000"
      restart: always
 
+   notes:
+     image: notes:latest
+     build:
+      context: Dockerfiles/Notes/ .
+      dockerfile: Dockerfile
+     ports:
+       - "5002:5000"
+     restart: always
+
    front:
      image: front:latest
+     build:
+      context: Dockerfiles/Front/ .
+      dockerfile: Dockerfile
      ports:
        - "8080:80"
      restart: always

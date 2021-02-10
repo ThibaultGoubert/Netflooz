@@ -7,3 +7,5 @@ ADD requirements.txt /
 RUN pip install -r requirements.txt
 
 CMD ["python", "./catalogue.py"]
+
+EXPOSE 8080
