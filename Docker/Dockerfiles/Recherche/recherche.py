@@ -26,37 +26,17 @@ def page_not_found(e):
 def api_filter():
     query_parameters = request.args
 
-    id = query_parameters.get('id')
-    published = query_parameters.get('published')
-    author = query_parameters.get('author')
-    title = query_parameters.get('title')
-
-    query = "SELECT * FROM books WHERE"
-    to_filter = []
-
-    if id:
-        query += ' id=? AND'
-        to_filter.append(id)
-    if published:
-        query += ' published=? AND'
-        to_filter.append(published)
-    if author:
-        query += ' author=? AND'
-        to_filter.append(author)
-    if title:
-        query += ' title=? AND'
-        to_filter.append(title)
-    if not (id or published or author or title):
+    value = query_parameters.get('value')
+    if not (value):
         return page_not_found(404)
-
-    query = query[:-4] + ';'
 
     conn = sqlite3.connect('books.db')
     conn.row_factory = dict_factory
     cur = conn.cursor()
 
-    results = cur.execute(query, to_filter).fetchall()
+    query = 'SELECT * FROM books WHERE author LIKE \'%'+value+'%\' OR first_sentence LIKE \'%'+value+'%\' OR published LIKE \'%'+value+'%\' OR title LIKE \'%'+value+'%\''
+    results = cur.execute(query).fetchall()
 
     return jsonify(results)
 	
-app.run()
+app.run(host="0.0.0.0", port="5003")

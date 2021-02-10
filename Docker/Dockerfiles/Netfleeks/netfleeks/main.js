@@ -35,10 +35,10 @@ class ResearchComponent {
     OnSearch() {
         let url;
         if (this.inputValue === '') {
-            url = '/all';
+            url = 'http://127.0.0.1:5001/api/v1/resources/books/all';
         }
         else {
-            url = '/search?author=' + this.inputValue;
+            url = 'http://127.0.0.1:5003/api/v1/resources/books/search?value=' + this.inputValue;
         }
         this.search(url);
     }
@@ -251,7 +251,7 @@ class ResearchService {
         this.httpClient = httpClient;
     }
     getData(url) {
-        return this.httpClient.get('http://127.0.0.1:5000/api/v1/resources/books' + url);
+        return this.httpClient.get(url);
     }
 }
 ResearchService.ɵfac = function ResearchService_Factory(t) { return new (t || ResearchService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
@@ -430,7 +430,7 @@ class CatalogueService {
         this.httpClient = httpClient;
     }
     getData() {
-        return this.httpClient.get('http://127.0.0.1:5000/api/v1/resources/books/all');
+        return this.httpClient.get('http://127.0.0.1:5001/api/v1/resources/books/all');
     }
 }
 CatalogueService.ɵfac = function CatalogueService_Factory(t) { return new (t || CatalogueService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
@@ -542,13 +542,13 @@ class NotesService {
         this.httpClient = httpClient;
     }
     getNote(id) {
-        return this.httpClient.get(`http://127.0.0.1:5000/api/v1/resources/notes?id_book=${id}`);
+        return this.httpClient.get(`http://127.0.0.1:5002/api/v1/resources/notes?id_book=${id}`);
     }
     sendNotes(idBook, note) {
         const params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpParams"]();
         params.set('id_book', idBook);
         params.set('note', note);
-        return this.httpClient.post(`http://127.0.0.1:5000/api/v1/resources/notes/create?id_book=${idBook}&note=${note}`, { params });
+        return this.httpClient.post(`http://127.0.0.1:5002/api/v1/resources/notes/create?id_book=${idBook}&note=${note}`, { params });
     }
 }
 NotesService.ɵfac = function NotesService_Factory(t) { return new (t || NotesService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"])); };

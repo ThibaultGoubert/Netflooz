@@ -65,4 +65,4 @@ def api_notes_create():
     finally:
         con.close()
 
-app.run(host="0.0.0.0", port=5000)
+app.run(host="0.0.0.0", port=5002)

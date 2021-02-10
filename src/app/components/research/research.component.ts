@@ -30,9 +30,9 @@ export class ResearchComponent implements OnInit {
   OnSearch(): void {
     let url;
     if (this.inputValue === '') {
-      url = '/all';
+      url = 'http://127.0.0.1:5001/api/v1/resources/books/all';
     } else {
-      url = '/search?author=' + this.inputValue;
+      url = 'http://127.0.0.1:5003/api/v1/resources/books/search?value=' + this.inputValue;
     }
     this.search(url);
   }

@@ -7,7 +7,7 @@ services:
       context: Dockerfiles/Catalogue/ .
       dockerfile: Dockerfile
      ports:
-       - "5001:5000"
+       - "5001:5001"
      restart: always
 
    notes:
@@ -16,17 +16,26 @@ services:
       context: Dockerfiles/Notes/ .
       dockerfile: Dockerfile
      ports:
-       - "5002:5000"
+       - "5002:5002"
      restart: always
 
-   front:
-     image: front:latest
+   recherche:
+     image: recherche:latest
      build:
-      context: Dockerfiles/Front/ .
+      context: Dockerfiles/Recherche/ .
+      dockerfile: Dockerfile
+     ports:
+       - "5003:5003"
+     restart: always
+
+   netfleeks:
+     image: netfleeks:latest
+     build:
+      context: Dockerfiles/Netfleeks/ .
       dockerfile: Dockerfile
      ports:
        - "8080:80"
      restart: always
        
 volumes:
-    volume_netflooz: {}
+    volume_netfleeks: {}

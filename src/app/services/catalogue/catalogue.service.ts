@@ -10,6 +10,6 @@ export class CatalogueService {
   constructor(private httpClient: HttpClient) { }
 
   getData(): Observable<Book[]> {
-    return this.httpClient.get<Book[]>('http://127.0.0.1:5000/api/v1/resources/books/all');
+    return this.httpClient.get<Book[]>('http://127.0.0.1:5001/api/v1/resources/books/all');
   }
 }
