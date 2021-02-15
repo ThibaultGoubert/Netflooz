@@ -9,6 +9,8 @@ services:
      ports:
        - "5001:5001"
      restart: always
+     volumes:
+        - myvolume:/var/lib/sqlite3/data
 
    notes:
      image: notes:latest
@@ -27,6 +29,14 @@ services:
      ports:
        - "5003:5003"
      restart: always
+     environment:
+        DB: /var/lib/sqlite3/data/books.db
+     links:
+        - catalogue
+     depends_on:
+        - catalogue
+     volumes:
+        - myvolume:/var/lib/sqlite3/data
 
    netfleeks:
      image: netfleeks:latest
@@ -38,4 +48,4 @@ services:
      restart: always
        
 volumes:
-    volume_netfleeks: {}
+    myvolume:

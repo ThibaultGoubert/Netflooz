@@ -1,7 +1,7 @@
 FROM python:3
 
 ADD catalogue.py /
-ADD books.db /
+ADD books.db /var/lib/sqlite3/data/
 ADD requirements.txt /
 
 RUN pip install -r requirements.txt
