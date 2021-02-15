@@ -9,8 +9,6 @@ CORS(app)
 app.config["DEBUG"] = True
 
 DB = os.environ["DB"]
-print("REGARDE ICIIIIIIIIIIIIIIIIIII:")
-print(DB)
 
 def dict_factory(cursor, row):
     d = {}

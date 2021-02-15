@@ -9,6 +9,8 @@ services:
      ports:
        - "5001:5001"
      restart: always
+     environment:
+        DB: /var/lib/sqlite3/data/books.db
      volumes:
         - myvolume:/var/lib/sqlite3/data
 
