@@ -2,13 +2,13 @@ import flask
 from flask import request, jsonify
 from flask_cors import CORS, cross_origin
 import sqlite3
-#import os
+import os
 
 app = flask.Flask(__name__)
 CORS(app)
 app.config["DEBUG"] = True
 
-#DB = os.environ["DB"]
+DB = os.environ["DB"]
 
 def dict_factory(cursor, row):
     d = {}
@@ -33,7 +33,7 @@ def api_filter():
     if not (value):
         return page_not_found(404)
 
-    conn = sqlite3.connect("../Catalogue/books.db")
+    conn = sqlite3.connect(DB)
     conn.row_factory = dict_factory
     cur = conn.cursor()
 
